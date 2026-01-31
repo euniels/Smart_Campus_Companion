@@ -1,4 +1,8 @@
 package com.example.smart_campus_companion.data.model
 
-class User {
-}
+data class User(
+    val id: Int,
+    val username: String,
+    val fullName: String,
+    val email: String
+)
