@@ -8,6 +8,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Business
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.Place
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,17 +16,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.smart_campus_companion.data.CampusDeptData // Import your data object
+import com.example.smart_campus_companion.ui.theme.PrimaryBlue
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CampusInfoScreen(navController: NavController) {
-    // Static data representing university departments
-    val departments = listOf(
-        "College of Computer Studies" to "ccs@university.edu.ph",
-        "College of Engineering" to "coe@university.edu.ph",
-        "College of Business" to "cba@university.edu.ph",
-        "College of Arts and Sciences" to "cas@university.edu.ph"
-    )
+    // Pulling the departments directly from your central data object
+    val departmentList = CampusDeptData.departments
 
     Scaffold(
         topBar = {
@@ -50,13 +48,19 @@ fun CampusInfoScreen(navController: NavController) {
                 Text(
                     text = "University Departments",
                     style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = PrimaryBlue
                 )
                 Spacer(modifier = Modifier.height(8.dp))
             }
 
-            items(departments) { (name, email) ->
-                DepartmentCard(name, email)
+            // Using the actual Department objects from your list
+            items(departmentList) { department ->
+                DepartmentCard(
+                    name = department.name,
+                    email = department.contactEmail,
+                    location = department.location
+                )
             }
 
             item {
@@ -68,17 +72,30 @@ fun CampusInfoScreen(navController: NavController) {
 }
 
 @Composable
-fun DepartmentCard(name: String, email: String) {
+fun DepartmentCard(name: String, email: String, location: String) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         elevation = CardDefaults.cardElevation(2.dp)
     ) {
-        ListItem(
-            headlineContent = { Text(name, fontWeight = FontWeight.SemiBold) },
-            supportingContent = { Text(email) },
-            leadingContent = { Icon(Icons.Default.Business, contentDescription = null, tint = MaterialTheme.colorScheme.primary) }
-        )
+        Column(modifier = Modifier.padding(16.dp)) {
+            Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+                Icon(Icons.Default.Business, contentDescription = null, tint = PrimaryBlue)
+                Spacer(modifier = Modifier.width(12.dp))
+                Text(text = name, fontWeight = FontWeight.SemiBold, style = MaterialTheme.typography.titleMedium)
+            }
+            Spacer(modifier = Modifier.height(8.dp))
+            Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+                Icon(Icons.Default.Place, contentDescription = null, modifier = Modifier.size(16.dp), tint = Color.Gray)
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(text = location, style = MaterialTheme.typography.bodySmall, color = Color.Gray)
+            }
+            Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+                Icon(Icons.Default.Email, contentDescription = null, modifier = Modifier.size(16.dp), tint = Color.Gray)
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(text = email, style = MaterialTheme.typography.bodySmall, color = Color.Gray)
+            }
+        }
     }
 }
 
