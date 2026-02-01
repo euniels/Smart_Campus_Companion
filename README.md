@@ -31,3 +31,12 @@ Smart Campus Companion is an Android application built using Kotlin and Jetpack 
 | QA / Documenter | Maurin, Kim Aldrin |
 </div>
 
+
+## Git Workflow
+
+1. Each team member creates their own branch from `develop`
+2. Work on the assigned tasks in their branch
+3. Once done, open a Pull Request to `develop`
+4. Git Manager reviews Pull Request, Team Manager Merges
+5. Resolve any merge conflicts before merging
+6. After all branches are merged, the code on `main` is the final output
