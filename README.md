@@ -10,3 +10,24 @@ through a clean and intuitive interface.
 </p>
 
 </div>
+
+
+---
+
+## App Description
+
+Smart Campus Companion is an Android application built using Kotlin and Jetpack Compose. It follows the MVVM architecture and is designed to assist university students with viewing campus information, managing academic tasks and schedules, reading campus announcements, and personalizing app settings. 
+
+---
+<div align="Center">
+<h2>Team Roles</h2>
+
+| Role   | Name |
+|------|------|
+| Team Leader | Gonzales, Maria Manuel |
+| Git Manager | Guarte, Eunel Angelo |
+| UI/UX Developer | Frisco, Mary Mae |
+| Feature Developer | Gacusana, John Lei |
+| QA / Documenter | Maurin, Kim Aldrin |
+</div>
+
