@@ -1,44 +1,37 @@
 package com.example.smart_campus_companion.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.smart_campus_companion.ui.screens.LoginScreen
-import com.example.smart_campus_companion.ui.screens.DashboardScreen
+import com.example.smart_campus_companion.data.SessionManager
 import com.example.smart_campus_companion.ui.screens.CampusInfoScreen
+import com.example.smart_campus_companion.ui.screens.DashboardScreen
+import com.example.smart_campus_companion.ui.screens.LoginScreen
 
 @Composable
 fun AppNavGraph() {
     val navController = rememberNavController()
+    val context = LocalContext.current
+    val sessionManager = remember { SessionManager(context) }
+    val startDestination = if (sessionManager.isLoggedIn()) Routes.Dashboard.route else Routes.Login.route
 
     NavHost(
         navController = navController,
-        startDestination = Routes.Login.route
+        startDestination = startDestination
     ) {
         composable(Routes.Login.route) {
-            LoginScreen(onLoginClick = {
-                navController.navigate(Routes.Dashboard.route)
-            })
+            LoginScreen(navController = navController)
         }
 
         composable(Routes.Dashboard.route) {
-            DashboardScreen(
-                onOpenCampusInfo = {
-                    navController.navigate(Routes.CampusInfo.route)
-                },
-                onLogout = {
-                    navController.navigate(Routes.Login.route) {
-                        popUpTo(Routes.Dashboard.route) { inclusive = true }
-                    }
-                }
-            )
+            DashboardScreen(navController = navController)
         }
 
         composable(Routes.CampusInfo.route) {
-            CampusInfoScreen(onBack = {
-                navController.popBackStack()
-            })
+            CampusInfoScreen(navController = navController)
         }
     }
 }

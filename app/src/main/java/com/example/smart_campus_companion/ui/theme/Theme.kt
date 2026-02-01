@@ -15,7 +15,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun SmartCampusTheme(content: @Composable () -> Unit) {
+fun Smart_Campus_CompanionTheme(content: @Composable () -> Unit) {
     MaterialTheme(
         colorScheme = LightColorScheme,
         content = content

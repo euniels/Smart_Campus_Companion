@@ -13,12 +13,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.smart_campus_companion.data.SessionManager
+import com.example.smart_campus_companion.domain.AuthLogic
+import com.example.smart_campus_companion.domain.LoginState
 import com.example.smart_campus_companion.ui.theme.PrimaryBlue
 
 @Composable
@@ -26,7 +30,19 @@ fun LoginScreen(navController: NavController) {
     var studentId by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
-    var errorMessage by remember { mutableStateOf("") }
+    var loginState by remember { mutableStateOf<LoginState>(LoginState.Idle) }
+    val context = LocalContext.current
+    val sessionManager = SessionManager(context)
+
+    LaunchedEffect(loginState) {
+        when (val state = loginState) {
+            is LoginState.Success -> {
+                sessionManager.setLoggedIn(true)
+                navController.navigate("dashboard")
+            }
+            else -> Unit
+        }
+    }
 
     Box(
         modifier = Modifier
@@ -85,10 +101,7 @@ fun LoginScreen(navController: NavController) {
 
                 OutlinedTextField(
                     value = studentId,
-                    onValueChange = {
-                        studentId = it
-                        errorMessage = "" // Clear error when typing
-                    },
+                    onValueChange = { studentId = it },
                     label = { Text("Student ID Number") },
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(16.dp),
@@ -103,10 +116,7 @@ fun LoginScreen(navController: NavController) {
 
                 OutlinedTextField(
                     value = password,
-                    onValueChange = {
-                        password = it
-                        errorMessage = "" // Clear error when typing
-                    },
+                    onValueChange = { password = it },
                     label = { Text("Password") },
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(16.dp),
@@ -124,9 +134,9 @@ fun LoginScreen(navController: NavController) {
                     )
                 )
 
-                if (errorMessage.isNotEmpty()) {
+                if (loginState is LoginState.Error) {
                     Text(
-                        text = errorMessage,
+                        text = (loginState as LoginState.Error).message,
                         color = Color.Red,
                         style = MaterialTheme.typography.bodySmall,
                         modifier = Modifier.padding(top = 8.dp)
@@ -135,27 +145,31 @@ fun LoginScreen(navController: NavController) {
 
                 Spacer(modifier = Modifier.height(32.dp))
 
-                // UPDATED VALIDATION: Accepts any non-empty input
                 Button(
                     onClick = {
-                        if (studentId.isNotBlank() && password.isNotBlank()) {
-                            navController.navigate("dashboard")
+                        loginState = LoginState.Loading
+                        if (AuthLogic.authenticate(studentId, password)) {
+                            loginState = LoginState.Success(studentId)
                         } else {
-                            errorMessage = "Please enter both ID and Password"
+                            loginState = LoginState.Error("Invalid ID or Password")
                         }
                     },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(56.dp),
                     shape = RoundedCornerShape(16.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = PrimaryBlue)
+                    colors = ButtonDefaults.buttonColors(containerColor = PrimaryBlue),
+                    enabled = loginState !is LoginState.Loading
                 ) {
-                    Text("Enter Portal", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+                    if (loginState is LoginState.Loading) {
+                        CircularProgressIndicator(color = Color.White)
+                    } else {
+                        Text("Enter Portal", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+                    }
                 }
 
                 Spacer(modifier = Modifier.weight(1f))
 
-                // Simplified footer as requested
                 Text(
                     text = "Smart Campus Companion v1.0",
                     modifier = Modifier.align(Alignment.CenterHorizontally),
