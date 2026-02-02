@@ -61,4 +61,11 @@ Unit tests are used to verify the core business logic of the application without
 - **Location:** `app/src/test/java/com/example/smart_campus_companion/`
 - **Scope:** Primarily targets the `domain` layer (e.g., `AuthLogic.kt`) to ensure validation rules for login and registration are functioning correctly.
 - **Execution:** Run via Android Studio or the command line:
+
+### 2. UI & Instrumented Testing
+These tests ensure that the UI components render correctly and that navigation flows work as expected on a real device or emulator.
+- **Location:** `app/src/androidTest/java/com/example/smart_campus_companion/`
+- **Scope:** Testing Jetpack Compose screens, button clicks, and screen transitions.
+- **Execution:** Run via Android Studio or the command line:
+  
   
