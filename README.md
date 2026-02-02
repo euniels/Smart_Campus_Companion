@@ -21,13 +21,13 @@ Smart Campus Companion is an Android application built using Kotlin and Jetpack 
 <div align="Center">
 <h2>Team Roles</h2>
 
-| Role   | Name |
-|------|------|
-| Team Leader | Gonzales, Maria Manuel |
-| Git Manager | Guarte, Eunel Angelo |
-| UI/UX Developer | Frisco, Mary Mae |
-| Feature Developer | Gacusana, John Lei |
-| QA / Documenter | Maurin, Kim Aldrin |
+| Role   | Name                    |
+|------|-------------------------|
+| Team Leader | Gonzales, Maria Manuela |
+| Git Manager | Guarte, Eunel Angelo    |
+| UI/UX Developer | Frisco, Mary Mae        |
+| Feature Developer | Gacusana, John Lei      |
+| QA / Documenter | Maurin, Kim Aldrin      |
 </div>
 
 ---
@@ -37,19 +37,29 @@ Smart Campus Companion is an Android application built using Kotlin and Jetpack 
 The system utilizes the **MVVM (Model-View-ViewModel)** architecture to ensure a clean separation of concerns and improved maintainability.
 
 ```text
-    app/src/main/java/com/example/smart_campus_companion/
-    ├── data/                  # Data Layer (Repositories & Local Data)
-    │   ├── model/             # Data classes and Entities
-    │   ├── CampusDeptData.kt  # Data source for campus information
-    │   └── SessionManager.kt  # Handling user sessions and preferences
-    ├── domain/                # Domain Layer (Business Logic)
-    │   ├── AuthLogic.kt       # Logic for authentication and validation
-    │   └── LoginState.kt      # State management for the auth flow
-    ├── ui/                    # UI Layer (Presentation)
-    │   ├── navigation/        # Routes and Screen navigation
-    │   ├── screens/           # UI Screens built with Jetpack Compose
-    │   └── theme/             # Design system (Colors, Typography, Shapes)
-    └── MainActivity.kt        # Main Entry Point of the application
+app/src/main/java/com/example/smart_campus_companion/
+├── data/
+│   ├── model/
+│   │   ├── Department.kt
+│   │   └── User.kt
+│   ├── CampusDeptData.kt
+│   └── SessionManager.kt
+├── domain/
+│   ├── AuthLogic.kt
+│   └── LoginState.kt
+├── ui/
+│   ├── navigation/
+│   │   ├── AppNavGraph.kt
+│   │   └── Routes.kt
+│   ├── screens/
+│   │   ├── CampusInfoScreen.kt
+│   │   ├── DashboardScreen.kt
+│   │   └── LoginScreen.kt
+│   └── theme/
+│       ├── Color.kt
+│       ├── Theme.kt
+│       └── Type.kt
+└── MainActivity.kt
 ```
 
 
