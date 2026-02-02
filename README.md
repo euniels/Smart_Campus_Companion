@@ -11,7 +11,6 @@ through a clean and intuitive interface.
 
 </div>
 
-
 ---
 
 ## App Description
@@ -31,6 +30,15 @@ Smart Campus Companion is an Android application built using Kotlin and Jetpack 
 | QA / Documenter | Maurin, Kim Aldrin |
 </div>
 
+---
+
+## Project Structure
+
+The system utilizes the **MVVM (Model-View-ViewModel)** architecture to ensure a clean separation of concerns and improved maintainability.
+
+text app/src/main/java/com/example/smart_campus_companion/ ├── data/                  # Data Layer (Repositories & Local Data) │   ├── model/             # Data classes and Entities │   ├── CampusDeptData.kt  # Data source for campus information │   └── SessionManager.kt  # Handling user sessions and preferences ├── domain/                # Domain Layer (Business Logic) │   ├── AuthLogic.kt       # Logic for authentication and validation │   └── LoginState.kt      # State management for the auth flow ├── ui/                    # UI Layer (Presentation) │   ├── navigation/        # Routes and Screen navigation │   ├── screens/           # UI Screens built with Jetpack Compose │   └── theme/             # Design system (Colors, Typography, Shapes) └── MainActivity.kt        # Main Entry Point of the application
+
+---
 
 ## Git Workflow
 
@@ -42,8 +50,15 @@ Smart Campus Companion is an Android application built using Kotlin and Jetpack 
 6. After all branches are merged, the code on `main` is the final output
 
 
-    ## Testing Strategy
-    - **Unit Testing:** Verifying business logic in the `domain` layer.
-    - **UI Testing:** Ensuring Jetpack Compose components render correctly.
-    - **Manual Testing:** Verified on Pixel 6 Emulator and physical devices.
-    
+---
+
+## Testing Documentation
+
+We maintain application reliability through a structured testing approach:
+
+### 1. Unit Testing
+Unit tests are used to verify the core business logic of the application without requiring a physical device or emulator.
+- **Location:** `app/src/test/java/com/example/smart_campus_companion/`
+- **Scope:** Primarily targets the `domain` layer (e.g., `AuthLogic.kt`) to ensure validation rules for login and registration are functioning correctly.
+- **Execution:** Run via Android Studio or the command line:
+  
