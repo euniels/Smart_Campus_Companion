@@ -36,7 +36,21 @@ Smart Campus Companion is an Android application built using Kotlin and Jetpack 
 
 The system utilizes the **MVVM (Model-View-ViewModel)** architecture to ensure a clean separation of concerns and improved maintainability.
 
-text app/src/main/java/com/example/smart_campus_companion/ ├── data/                  # Data Layer (Repositories & Local Data) │   ├── model/             # Data classes and Entities │   ├── CampusDeptData.kt  # Data source for campus information │   └── SessionManager.kt  # Handling user sessions and preferences ├── domain/                # Domain Layer (Business Logic) │   ├── AuthLogic.kt       # Logic for authentication and validation │   └── LoginState.kt      # State management for the auth flow ├── ui/                    # UI Layer (Presentation) │   ├── navigation/        # Routes and Screen navigation │   ├── screens/           # UI Screens built with Jetpack Compose │   └── theme/             # Design system (Colors, Typography, Shapes) └── MainActivity.kt        # Main Entry Point of the application
+    app/src/main/java/com/example/smart_campus_companion/
+    ├── data/                  # Data Layer (Repositories & Local Data)
+    │   ├── model/             # Data classes and Entities
+    │   ├── CampusDeptData.kt  # Data source for campus information
+    │   └── SessionManager.kt  # Handling user sessions and preferences
+    ├── domain/                # Domain Layer (Business Logic)
+    │   ├── AuthLogic.kt       # Logic for authentication and validation
+    │   └── LoginState.kt      # State management for the auth flow
+    ├── ui/                    # UI Layer (Presentation)
+    │   ├── navigation/        # Routes and Screen navigation
+    │   ├── screens/           # UI Screens built with Jetpack Compose
+    │   └── theme/             # Design system (Colors, Typography, Shapes)
+    └── MainActivity.kt        # Main Entry Point of the application
+
+
 
 ---
 
@@ -67,5 +81,18 @@ These tests ensure that the UI components render correctly and that navigation f
 - **Location:** `app/src/androidTest/java/com/example/smart_campus_companion/`
 - **Scope:** Testing Jetpack Compose screens, button clicks, and screen transitions.
 - **Execution:** Run via Android Studio or the command line:
+
+  ### 3. Manual Testing
+    - Conducted on **Pixel 6 (API 33)** and physical devices to ensure responsiveness and stability across different screen sizes.
+
+    ---
+
+  ## Technologies Used
+    - **Language:** Kotlin
+    - **UI Framework:** Jetpack Compose
+    - **Architecture:** MVVM (Model-View-ViewModel)
+    - **Navigation:** Compose Navigation
+    - **Dependency Management:** Gradle (Kotlin DSL)
+    
   
   
