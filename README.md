@@ -36,6 +36,7 @@ Smart Campus Companion is an Android application built using Kotlin and Jetpack 
 
 The system utilizes the **MVVM (Model-View-ViewModel)** architecture to ensure a clean separation of concerns and improved maintainability.
 
+```text
     app/src/main/java/com/example/smart_campus_companion/
     ├── data/                  # Data Layer (Repositories & Local Data)
     │   ├── model/             # Data classes and Entities
@@ -49,7 +50,7 @@ The system utilizes the **MVVM (Model-View-ViewModel)** architecture to ensure a
     │   ├── screens/           # UI Screens built with Jetpack Compose
     │   └── theme/             # Design system (Colors, Typography, Shapes)
     └── MainActivity.kt        # Main Entry Point of the application
-
+```
 
 
 ---
@@ -64,6 +65,7 @@ The system utilizes the **MVVM (Model-View-ViewModel)** architecture to ensure a
 6. After all branches are merged, the code on `main` is the final output
 
 
+
 ---
 
 ## Testing Documentation
@@ -73,26 +75,33 @@ We maintain application reliability through a structured testing approach:
 ### 1. Unit Testing
 Unit tests are used to verify the core business logic of the application without requiring a physical device or emulator.
 - **Location:** `app/src/test/java/com/example/smart_campus_companion/`
-- **Scope:** Primarily targets the `domain` layer (e.g., `AuthLogic.kt`) to ensure validation rules for login and registration are functioning correctly.
-- **Execution:** Run via Android Studio or the command line:
+- **Scope:** Primarily targets the `domain` layer (e.g., `AuthLogic.kt`).
+- **Execution:** Run via the command line:
+  ```bash
+  ./gradlew test
+  ```
+
 
 ### 2. UI & Instrumented Testing
-These tests ensure that the UI components render correctly and that navigation flows work as expected on a real device or emulator.
+These tests ensure that the UI components render correctly and navigation flows work as expected.
 - **Location:** `app/src/androidTest/java/com/example/smart_campus_companion/`
-- **Scope:** Testing Jetpack Compose screens, button clicks, and screen transitions.
-- **Execution:** Run via Android Studio or the command line:
+- **Scope:** Testing Jetpack Compose screens and navigation.
+- **Execution:** Run via the command line:
+  ```bash
+  ./gradlew connectedAndroidTest
+  ```
 
-  ### 3. Manual Testing
-    - Conducted on **Pixel 6 (API 33)** and physical devices to ensure responsiveness and stability across different screen sizes.
+### 3. Manual Testing
+- Conducted on **Pixel 6 (API 33)** and physical devices to ensure responsiveness and stability across different screen sizes.
 
-    ---
+---
 
-  ## Technologies Used
-    - **Language:** Kotlin
-    - **UI Framework:** Jetpack Compose
-    - **Architecture:** MVVM (Model-View-ViewModel)
-    - **Navigation:** Compose Navigation
-    - **Dependency Management:** Gradle (Kotlin DSL)
+## Technologies Used
+- **Language:** Kotlin
+- **UI Framework:** Jetpack Compose
+- **Architecture:** MVVM (Model-View-ViewModel)
+- **Navigation:** Compose Navigation
+- **Dependency Management:** Gradle (Kotlin DSL)
     
   
   
