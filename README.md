@@ -40,3 +40,10 @@ Smart Campus Companion is an Android application built using Kotlin and Jetpack 
 4. Git Manager reviews Pull Request, Team Manager Merges
 5. Resolve any merge conflicts before merging
 6. After all branches are merged, the code on `main` is the final output
+
+
+    ## Testing Strategy
+    - **Unit Testing:** Verifying business logic in the `domain` layer.
+    - **UI Testing:** Ensuring Jetpack Compose components render correctly.
+    - **Manual Testing:** Verified on Pixel 6 Emulator and physical devices.
+    
