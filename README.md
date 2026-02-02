@@ -102,7 +102,21 @@ These tests ensure that the UI components render correctly and navigation flows 
   ```
 
 ### 3. Manual Testing
-- Conducted on **Pixel 6 (API 33)** and physical devices to ensure responsiveness and stability across different screen sizes.
+- **Development & Testing Environment:** Windows 10 Pro (Version 22H2, OS Build 19045.6466)
+- Tested using Android Studio Emulators and physical devices to ensure responsiveness and stability across different screen sizes.
+
+---
+
+## Testing Procedure (Verification Process)
+
+To ensure the system is fully functional, we followed this systematic testing process:
+
+1.  **Feature Validation:** Each feature (Login, Dashboard, Campus Info) was tested individually immediately after development to catch bugs early.
+2.  **Authentication Flow Check:** We verified the `AuthLogic` by inputting correct and incorrect credentials to ensure the application handles validation and error states (like "Invalid credentials") correctly.
+3.  **Navigation Testing:** We performed "Click-through" testing to ensure that clicking buttons correctly navigates to the intended screens (e.g., from Login to Dashboard) without crashes.
+4.  **Data Consistency:** We verified that the information displayed in the `CampusInfoScreen` correctly reflects the data stored in the `data` layer (repositories).
+5.  **UI Responsiveness:** The application was tested on different emulator screen sizes to ensure the layout remains intuitive and elements do not overlap.
+6.  **State Management:** We checked if the app correctly maintains the user session using `SessionManager`, ensuring the user stays logged in when the app is restarted.
 
 ---
 
